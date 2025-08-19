@@ -37,7 +37,7 @@ export async function POST(request) {
                 })
         }
 
-        const buffer = Buffer.from(await file.buffer());
+        const buffer = Buffer.from(await file.arrayBuffer());
         let emails = [];
 
         if (file.name.endsWith('.csv')) {
@@ -63,7 +63,8 @@ export async function POST(request) {
 
         return NextResponse.json({
             success: true,
-            message: "Emails extracted successfully"
+            message: "Emails extracted successfully",
+            emails
         },
             {
                 status: 200
